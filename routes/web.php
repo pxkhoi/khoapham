@@ -93,3 +93,20 @@ Route::get('khoahoc/{tenkhoahoc}','Mycontroller@KhoaHoc');
 
 //LÀM VIỆC VỚI REQUEST
 Route::get('myrequest','Mycontroller@GetURL');
+
+Route::get('getForm', function(){
+    return view('postForm');
+});
+
+//Route::post('postForm', 'Mycontroller@postForm')->name('postForm');
+Route::post('postForm', ['as'=>'postForm', 'uses'=> 'Mycontroller@postForm']);
+
+//Cookie
+Route::get('setCookie','Mycontroller@setCookie');
+Route::get('getCookie','Mycontroller@getCookie');
+
+Route::get('uploadfile',function(){
+    return view('postFile');
+});
+
+Route::post('myFile','Mycontroller@postFile')->name('postFile');
