@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Routing\RouteRegistrar;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -110,3 +110,10 @@ Route::get('uploadfile',function(){
 });
 
 Route::post('myFile','Mycontroller@postFile')->name('postFile');
+
+Route::get('getJson','Mycontroller@getJson');
+
+Route::get('myView','Mycontroller@myView');
+Route::get('KhoaPham','Mycontroller@KhoaPham');
+Route::get('Time/{t}','Mycontroller@Time');
+View::share('KhoaHoc','Laravel');

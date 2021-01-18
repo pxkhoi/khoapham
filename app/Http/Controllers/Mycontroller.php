@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-// use App\Http\Requests;
+use App\Http\Requests;
+use Illuminate\View\View;
+
 
 class Mycontroller extends Controller
 {
@@ -52,19 +55,44 @@ class Mycontroller extends Controller
    }
    public function postFile(Request $request)
    {
-      if($request -> has('myFile'))
+      if($request -> hasFile('myFile'))
        { 
          $file = $request->file('myFile');
-         if($file ->getClientOriginalExtention('myFile')=='JPG')
-
+         // var_dump($file);
+         if($file->getClientOriginalExtension('myFile')=='JPG')
+            {
+               $filename = $file->getClientOriginalName('myFile');
+               $file->move('Images', $filename); 
+               echo "Ten file: ".$filename;
+               echo "Da luu file".$filename;
+            }
+         else {
+            echo "Khong duoc phep upload file";
+         }
          
-         $filename = $file->getClientOriginalName('myFile');
-         echo "Ten file: ".$filename;
-         $file->move('Images', $filename);
        }
-       else{
+       else {
          echo "Vui lòng chọn file";
        }
    }
-   
+   //JSON
+   public function getJson(){
+      $arr = ["Laravel","PHP", "HTML","ASP.net"];
+
+      return response()->json($arr);
+   }
+   //View
+   public function myView()
+   {
+      return view('myView');
+   }
+   //View nam tron thu mucj
+   public function KhoaPham()
+   {
+      return view('views.KhoaPham');
+   }
+   public function Time($t)
+   {
+      return view('myView',['time'=>$t]);
+   }
    }
